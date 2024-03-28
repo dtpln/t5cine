@@ -1,32 +1,39 @@
+# <p style="text-align: center;">**T5CINE FEATURES AND ROADMAP**</p>
+    Key: [x] = done
+         [ ] = not done
+         [-] = not done, 
+         [^] = works, but needs to be fixed
 
+**MISC FUNCTIONS**
 
-//  MISC FUNCTIONS
+    - [x]     clone               -- DONE ( Although doesn't attach weapon model to clone. )
+    - [ ]     givecamo            -- FIX THIS ( Might opt to remove this. )
+    - [x]     drop                -- DONE
+    - [x]     about               -- DONE
+    - [x]     clearbodies         -- DONE
+    - [-]     viewhands           -- FIX THIS
+    - [x]     eb_explosive        -- DONE
+    - [x]     eb_magic            -- DONE
+    - [-]     score               -- FIX THIS
 
-- [^]     clone               -- works, just doesnt attach weapon
-- [ ]     givecamo                -- currently doesnt work
-- [x]     drop                -- works as intended
-- [x]     about               -- works as intended
-- [x]     clearbodies         -- works as intended
-- [-]     viewhands               -- currently doesnt work
-- [x]     eb_explosive        -- works as intended
-- [x]     eb_magic            -- works as intended
-- [-]     score                   -- currently doesnt work
+**VISUAL FUNCTIONS**
 
-//  VISUAL FUNCTIONS
+    - [x]     spawn_model         -- DONE
+    - [ ]     spawn_fx            -- NOT SURE AB THIS ONE
+    - [x]     vision              -- DONE
+    - [x]     fog                 -- DONE
+    - [x]     change class        -- DONE
 
-- [x]     spawn_model         -- works as intended
-- [ ]     spawn_fx
-- [x]     vision              -- works as intended
-- [x]     fog                 -- works as intended
-- [x]     change class        -- works as intended
+**BOT FUNCTIONS**
 
-//  BOT FUNCTIONS
+    - [x]    add                -- DONE
+    - [x]    move               -- DONE
+    - [x]    aim                -- DONE
+    - [x]    stare              -- DONE
+    - [-]    model              -- FIX THIS ( Opted for a different system using camo argument for now. )
+    - [^]    kill               -- DONE ( Although doesn't attach weapon model on death. )
+    - [^]    holdgun            -- DONE
+    - [ ]    freeze             -- FIX THIS ( Ugh... )
 
-- [x]    add                -- works as intended
-- [x]    move               -- works as intended
-- [x]    aim                -- works as intended
-- [x]    stare              -- works as intended
-- [-]    model                  -- currently doesnt work
-- [^]    kill               -- works
-- [^]    holdgun            -- works, but weapon model while attached looks funky
-- [ ]    freeze                 -- currently doesnt work
+<br/><br/>
+**PLANNED FEATURES**
