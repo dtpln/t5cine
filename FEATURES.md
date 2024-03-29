@@ -8,7 +8,7 @@
 **MISC FUNCTIONS**
 
     - [x]     clone               -- DONE ( Although doesn't attach weapon model to clone. )
-    - [ ]     givecamo            -- FIX THIS ( Might opt to remove this. )
+    - [x]     givecamo            -- DONE #ANTIGA
     - [x]     drop                -- DONE
     - [x]     about               -- DONE
     - [x]     clearbodies         -- DONE
@@ -27,7 +27,7 @@
 
 **BOT FUNCTIONS**
 
-    - [x]    add                -- DONE
+    - [x]    add                -- DONE #ANTIGA
     - [x]    move               -- DONE
     - [x]    aim                -- DONE
     - [x]    stare              -- DONE

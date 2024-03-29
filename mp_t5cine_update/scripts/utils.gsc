@@ -85,19 +85,14 @@ fake_killfeed_icon( weapon )
 
 take_offhands_tac()
 {
-    self takeweapon( "smoke_grenade_mp" );
-    self takeweapon( "flash_grenade_mp" );
-    self takeweapon( "concussion_grenade_mp" );
+    tac = self getOffhandSecondaryClass();
+    self takeweapon( tac );
 }
 
 take_offhands_leth()
 {
-    self takeweapon( "flare_mp" );
-    self takeweapon( "throwingknife_mp" );
-    self takeweapon( "c4_mp" );
-    self takeweapon( "claymore_mp" );
-    self takeweapon( "semtex_mp" );
-    self takeweapon( "frag_grenade_mp" );
+    leth = self getCurrentOffhand();
+    self takeWeapon( leth );
 }
 
 is_akimbo( weapon )

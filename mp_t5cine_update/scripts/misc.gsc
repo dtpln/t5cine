@@ -46,9 +46,7 @@ give( args )
     {
         self dropItem( self getCurrentWeapon() );
         skipframe();
-
-        self giveWeapon( weapon, camo_int( camo ), is_akimbo( weapon ) );
-
+        self giveWeapon( weapon, is_akimbo( weapon ), camo_int( camo ) ); // t5 is different, camo is the 3rd integer!
         self switchToWeapon( weapon );
     }
 }

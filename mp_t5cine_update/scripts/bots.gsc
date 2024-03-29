@@ -17,7 +17,7 @@ add( args )
 
     ent = addtestclient();
     ent persistence();
-    ent spawnme( self, weapon, team, camo );
+    ent thread spawnme( self, weapon, team, camo );
 
     create_kill_params();
 }
