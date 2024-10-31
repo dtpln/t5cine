@@ -1,20 +1,19 @@
-<img src="AWAITING HEADER IMAGE...">
+<div align="center"> 
+    
+[![T5Cine](https://raw.githubusercontent.com/dtpln/codcine/main/assets/img/t5cine_new.png 'T5Cine')](https://github.com/dtpln/t5cine)
+### A features-rich cinematic mod for Call of Duty: Black Ops
 
-# *T5Cine*
-
-### 🎥 A features-rich cinematic mod for Call of Duty®: Black Ops
-
-<img src="https://img.shields.io/badge/REWRITE%20IN%20PROGRESS-46baba?style=flat-square">　<a href="https://github.com/dtpln/t5cine/releases"><img src="https://img.shields.io/github/v/release/dtpln/t5cine?label=Latest%20release&style=flat-square&color=46baba"></a>　<a href="https://discord.gg/wgRJDJJ"><img src="https://img.shields.io/discord/617736623412740146?label=Join%20the%20IW4Cine%20Discord!&style=flat-square&color=46baba"></a>  
+<a href="https://github.com/dtpln/t5cine/releases"><img src="https://img.shields.io/github/v/release/dtpln/t5cine?label=Latest%20release&style=flat-square&color=46baba"></a>　
+<a href="https://discord.gg/wgRJDJJ"><img src="https://img.shields.io/discord/617736623412740146?label=Join%20the%20IW4Cine%20Discord!&style=flat-square&color=46baba"></a>　
+<a href="https://github.com/dtpln/t5cine/releases/latest"><img src="https://img.shields.io/github/downloads/dtpln/t5cine/total?color=46baba&label=Downloads&style=flat-square"></a>
+</div>
 <br/><br/>
 
-**PLEASE NOTE**: As the original mod is in a WIP phase, so will this port be..
-
-This is a port of [Sass' Cinematic Mod](https://github.com/sortileges/iw4cine) for Call of Duty®: Black Ops, designed for video editors to create cinematics shots in-game.
+This is a port of [Sass' Cinematic Mod](https://github.com/sortileges/iw4cine) for **Call of Duty: Black Ops**, designed for video editors to create cinematics shots in-game.
 
 This mod creates new dvars combined as player commands. They are all associated to script functions that are triggered when the dvar doesn't equal it's default value, meaning these functions will all independently stay idle until they get notified to go ahead.
 
 This mod was also designed as a Multiplayer mod only. It will not work in Singleplayer or Zombies.
-
 
 <br/><br/>
 ## Requirements
