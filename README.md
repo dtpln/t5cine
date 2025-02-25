@@ -58,7 +58,12 @@ Once [Sass](https://github.com/sortileges) finishes the mod's rewrite, the HTML 
 
 <br/><br/>
 ## Features
-- Check **[FEATURES](https://github.com/dtpln/t5cine/blob/main/FEATURES.md)**
+**PLANNED FEATURES**
+
+    - [ ]    Better holdgun system
+    - [ ]    Better bot model system
+    - [ ]    Allow the score to be edited.
+
 
 <br/><br/>
 ## Credits
