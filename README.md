@@ -69,4 +69,4 @@ Once [Sass](https://github.com/sortileges) finishes the mod's rewrite, the HTML 
 ## Credits
 - **Sass** - Created the original IW4Cine mod. All the code was written by him, I just edited it to work on this game.
 - **Antiga** - Helped rewrite the mod and fix things that I couldn't.
--- **JaZn** - Beta tester. 
+- **JaZn** - Beta tester. 
