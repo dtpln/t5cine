@@ -2,12 +2,11 @@
 
     Key: [x] = done
          [ ] = not done
-         [-] = not done, 
-         [^] = works, but needs to be fixed
+         [-] = works, but needs to be fixed
 
 **MISC FUNCTIONS**
 
-    - [x]     clone               -- DONE ( Although doesn't attach weapon model to clone. )
+    - [x]     clone               -- DONE
     - [x]     givecamo            -- DONE #ANTIGA
     - [x]     drop                -- DONE
     - [x]     about               -- DONE
@@ -31,10 +30,13 @@
     - [x]    move               -- DONE
     - [x]    aim                -- DONE
     - [x]    stare              -- DONE
-    - [-]    model              -- FIX THIS ( Opted for a different system using camo argument for now. )
-    - [^]    kill               -- DONE ( Although doesn't attach weapon model on death. )
-    - [^]    holdgun            -- DONE
-    - [ ]    freeze             -- FIX THIS ( Ugh... )
+    - [-]    model              -- DONE ( Opted for a different system using camo argument for now. Pretty jank but it works.)
+    - [x]    kill               -- DONE
+    - [-]    holdgun            -- FIX THIS ( Need to figure out a system that attaches weapon model to bot upon death, while removing the actual weapon. )
+    - [x]    freeze             -- DONE
 
 <br/><br/>
 **PLANNED FEATURES**
+    - [ ]    Better holdgun system
+    - [ ]    Better bot model system
+    - [ ]    Allow the score to be edited.
