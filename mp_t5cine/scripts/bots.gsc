@@ -8,12 +8,12 @@
 #include maps\mp\_utility;
 #include maps\mp\gametypes\_class;
 
-
+// Add a bot
 add( args )
 {
     weapon = args[0];
-    team = args[1];
-    camo = args[2];
+    team = args[2];
+    camo = args[1];
 
     ent = addtestclient();
     ent persistence();
@@ -22,6 +22,7 @@ add( args )
     create_kill_params();
 }
 
+// Set bot persistence
 persistence()
 {
     self.pers["isBot"]      = true;     // is bot
@@ -29,6 +30,7 @@ persistence()
     self.pers["fakeModel"]  = false;    // has the bot's model been changed?
 }
 
+// Spawn a bot
 spawnme( owner, weapon, team, camo )
 {
     while ( !isdefined( self.pers["team"] ) ) skipframe();
@@ -42,6 +44,7 @@ spawnme( owner, weapon, team, camo )
 
     skipframe();
 
+    // Had to use the method I used in T4 to set custom bot models upon conception. -4g
     if ( camo == "smg" )
 		self notify( "menuresponse", "changeclass", "smg_mp" );
 	else if ( camo == "cqb" )
@@ -75,10 +78,12 @@ spawnme( owner, weapon, team, camo )
     
     self freezeControls( level.BOT_MOVE );
 
+    self clearPerks();
     self unsetPerk( "specialty_pistoldeath" );
     self unsetPerk( "specialty_finalstand" );
 }
 
+// Move a bot
 move( args )
 {
     name = args[0];
@@ -93,6 +98,7 @@ move( args )
     }
 }
 
+// Make a bot aim
 aim( args )
 {
     name = args[0];
@@ -108,6 +114,7 @@ aim( args )
     }
 }
 
+// Make a bot stare
 stare( args )
 {
     name = args[0];
@@ -123,29 +130,47 @@ stare( args )
     }
 }
 
+// Change bot model
 model( args )
 {
     name  = args[0];
     model = args[1];
-    team  = args[2];
-    for ( i = 0; i < level.players.size; i++ )
+    team  = args[2]; // <allies, axis >
     {
-        player = level.players[i];
-        if ( select_ents( player, name, self ) ) 
+        for ( i = 0; i < level.players.size; i++ )
         {
-            player.pers["fakeTeam"]  = team;
-            player.pers["fakeModel"] = model;
-
-            player detachAll();
-            skipframe();
-            player[[game[team + "_model"][model]]]();
-
-            if( isdefined ( player.pers["viewmodel"] ) )
-                player setViewmodel( player.pers["viewmodel"] );
+            player = level.players[i];
+            if ( select_ents( player, name, self ) ) 
+            {
+                oldWeap = player getCurrentWeapon();
+                if ( model == "smg" )
+	            	player notify( "menuresponse", "changeclass", "smg_mp" );
+	            else if ( model == "cqb" )
+	            	player notify( "menuresponse", "changeclass", "cqb_mp" );
+	            else if ( model == "assault" )
+	            	player notify( "menuresponse", "changeclass", "assault_mp" );
+	            else if ( model == "lmg" )
+	            	player notify( "menuresponse", "changeclass", "lmg_mp" );
+	            else if ( model == "sniper" )
+	            	player notify( "menuresponse", "changeclass", "sniper_mp" );
+	            else {
+	            	player notify( "menuresponse", "changeclass", "assault_mp" );
+	            	self iPrintLn( "[^3WARNING^7] ^8'"+ model +"' ^7isn't a valid class. Random class given." ); }
+                waitframe();
+                player takeAllWeapons();
+                wait .5;
+                player giveWeapon( oldWeap ); player setSpawnWeapon( oldWeap ); player switchToWeapon( oldWeap );
+                wait .5;
+                newerWeap = player getCurrentWeapon(); 
+                player takeWeapon( newerWeap ); player switchToWeapon( oldWeap );
+                if( isdefined ( player.pers["viewmodel"] ) )
+                    player setViewmodel( player.pers["viewmodel"] );
+            }
         }
-    }
+    } 
 }
 
+// Bot aiming logic
 doaim()
 {
     self endon( "disconnect" );
@@ -153,7 +178,7 @@ doaim()
 
     for (;;)
     {
-        wait .05;   // waittillframeend makes the loop too fast (?) and the game yeets itself off the mortal plane from whence it came - Sass
+        wait .05;
         target = undefined;
 
         for ( i = 0; i < level.players.size; i++ )
@@ -174,6 +199,7 @@ doaim()
     }
 }
 
+// Kill a bot
 kill( args )
 {
     name = args[0];
@@ -190,19 +216,20 @@ kill( args )
 
             playFXOnTag( getFX( fx ), self, tag );
             player thread [[level.callbackPlayerDamage]]( player, player, player.health, 8, "MOD_SUICIDE", self getCurrentWeapon(), tag, tag, hitloc, 0 );
-            
+            player freezeControls( level.BOT_MOVE );
+            player clearPerks();
         }
     }
 }
 
-// This absolutely sucks redo me
-delay(args)
+// Delay bot spawn
+delay( args )
 {
-    //time = args[0];
     setDvar( "scr_killcam_time",      level.BOT_SPAWN_DELAY/2 );
     setDvar( "scr_killcam_posttime",  level.BOT_SPAWN_DELAY/2 );
 }
 
+// Create bot loadout
 create_loadout( weapon )
 {
     loadout = spawnstruct();
@@ -210,6 +237,7 @@ create_loadout( weapon )
     return loadout;
 }
 
+// Attach weapons to bot
 attach_weapons( loadout )
 {
     currentWeapon = self getCurrentWeapon();
@@ -221,6 +249,30 @@ attach_weapons( loadout )
     }
 }
 
+// Change bot weapon
+weapon( args )
+{
+    name = args[0];
+    weapon = args[1];
+    camo = args[2]; // Camo name, reference function camo_int.
+    for ( i = 0; i < level.players.size; i++ )
+    {
+        player = level.players[i];
+        if ( select_ents( player, name, self ) )
+        {
+            currWeapon = player getCurrentWeapon();
+            player takeWeapon( currWeapon );
+            skipframe();
+            player giveWeapon( weapon, is_akimbo( weapon ), camo_int( camo ) );
+            player switchToWeapon( weapon );
+            wait 1;
+            player setSpawnWeapon( weapon );
+            player thread attach_weapons();
+        }
+    }
+}
+
+// Create kill parameters
 create_kill_params()
 {
     level.killparams             = [];
@@ -229,6 +281,7 @@ create_kill_params()
     level.killparams["shotgun"]  = "flesh_body:j_knee_ri:body"; // REDO ME!!
 }
 
+// Give loadout on spawn
 give_loadout_on_spawn( loadout )
 {
     self takeAllWeapons();

@@ -1,11 +1,11 @@
 /*
- *      T5Cine -- DONE
+ *      T5Cine
  *      Player-related functions
  */
 
-//#include common_scripts\utility;
 #include scripts\utils;
 
+// Ammo Regen
 playerRegenAmmo()
 {
     if( !level.PLAYER_AMMO ) return;
@@ -38,11 +38,12 @@ regenEquip()
     }
 }
 
+// Movement Tweaks
 movementTweaks()
 {
     if( !level.PLAYER_MOVEMENT ) return;
 
     setDvar( "jump_slowdownEnable", "0" );
     self setPerk( "specialty_fallheight" );
-    self setPerk( "specialty_movefaster" );
+    self setPerk( "specialty_movefaster" ); // Marathon
 }

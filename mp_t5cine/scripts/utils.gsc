@@ -6,33 +6,34 @@
 #include common_scripts\utility;
 #include maps\mp\_utility;
 #include scripts\defaults;
-// Macros
-waitsec()
-{ wait 1; }
 
-waitframe()
-{ wait .05; }
 
-skipframe()
-{ waittillframeend; }
+/// Macros
+waitsec() { wait 1; }
+waitframe() { wait 0.05; }
+skipframe() { waittillframeend; }
 
-//print( string ) // Removed "pront", sorry sass
-//{ for ( i = 0; i < level.players.size; i++ ) player iPrintLn( string );  }
 
+// Utility Functions
 true_or_undef( cond )
-{ if ( cond || !isdefined( cond ) ) return true; }
+{
+    if ( cond || !isdefined( cond ) ) return true;
+}
 
-defaultcase( cond, a, b )
-{ if ( cond ) return a; return b; }
-
-//inarray( value, array, err )
-//{ for ( i = 0; i < ( element in array; i++ )) { if ( element == value ) return true; } pront( err ); return false; }
+defaultcase( cond, a, b) 
+{
+    if ( cond ) return a;
+    return b;
+}
 
 bool( value )
-{ if ( value ) return "ON"; return "OFF"; }
+{
+    if ( value ) return "ON";
+    return "OFF";
+}
 
 
-// Create thread for player spawns
+// Player Spawn Thread
 create_spawn_thread( callback, args )
 {
     self endon( "disconnect" );
@@ -47,40 +48,44 @@ create_spawn_thread( callback, args )
 
 
 // Weapons-related functions
-camo_int( int )
+camo_int( tracker )
 {
-    return int( tableLookup( "mp/camoTable.csv", 1, int, 0 ) );
-}
-
-get_offhand_name( item )
-{
-    switch ( item )
-    {
-        case "flash_grenade_mp":
-            return "flash";
-        case "smoke_grenade_mp":
-            return "smoke";
-        case "flare_mp":
-            return "flare";
+    wait .5;
+    switch ( tracker )
+	{
+		case "dusty":
+			return 1;
+		case "nevada":
+			return 2;
+        case "woodland":
+            return 3;
+        case "tiger":
+            return 4;
+        case "sahara":
+            return 5;
+        case "erdl":
+            return 6;
+        case "berlin":
+            return 7;
+        case "warsaw":
+            return 8;
+        case "red":
+            return 9;
+        case "flora":
+            return 10;
+        case "siberia":
+            return 11;
+        case "olive":
+            return 12;
+        case "ice":
+            return 13;
+        case "yukon":
+            return 14;
+        case "gold":
+            return 15;
         default:
-            return item;
-    }
-}
-
-// Gotta test all weapons and add them if needed
-fake_killfeed_icon( weapon )
-{
-    switch ( weapon )
-    {
-        case "cheytac":
-            return "intervention";
-        case "m4":
-            return "m4a1";
-        case "masada":
-            return "acr";
-        default:
-            return weapon;
-    }
+			return 0;
+	}
 }
 
 take_offhands_tac()
@@ -102,14 +107,16 @@ is_akimbo( weapon )
     return false;
 }
 
-skip_prematch() // Works, i guess... -4g
+
+// Match Tweaks
+skip_prematch()
 {
     level.prematchPeriod = -1; // Fixed
 }
 
 lod_tweaks()
 {
-    if(!level.VISUAL_LOD) return;
+    if( !level.VISUAL_LOD ) return;
 
     setDvar( "r_lodBiasRigid",   "-1000" );
     setDvar( "r_lodBiasSkinned", "-1000" );
@@ -134,19 +141,26 @@ match_tweaks()
     if( level.MATCH_UNLIMITED_SCORE ) {
         setDvar( "scr_" + level.gameType + "_scorelimit", 0 );
         setDvar( "scr_" + level.gameType + "_winlimit", 0 ); }
+    if( !level.INGAME_MUSIC ) {
+        game["music"]["spawn_allies"] = undefined; 
+        game["music"]["spawn_axis"] = undefined; }
 }
 
 bots_tweaks() //    Useless in games that lack these dvars by default. -4g
 {
-        if( self is_bot_2() && level.BOT_MOVE ) {
-            self freezecontrols( level.BOT_MOVE );
-        }
-        else self freezecontrols( false );
+    setDvar( "testclients_doMove",      level.BOT_MOVE );
+    setDvar( "testclients_doAttack",    level.BOT_MOVE );
+    setDvar( "testclients_doReload",    level.BOT_MOVE );
+    setDvar( "testclients_watchKillcam", 1 );
+    if( ( !self.isHost ) && level.BOT_MOVE ) {
+        self freezecontrols( level.BOT_MOVE );
+    }
+    else self freezecontrols( false );
 }
 
 score_tweaks()
 {
-    maps\mp\gametypes\_rank::registerScoreInfo( "kill",  level.MATCH_KILL_SCORE );
+    level thread maps\mp\gametypes\_rank::registerScoreInfo( "kill",  level.MATCH_KILL_SCORE );
 
     if ( level.MATCH_KILL_BONUS )
     {
@@ -192,25 +206,15 @@ score_tweaks()
     }
 }
 
+
 // Player & Bots manipulation
-is_bot_2()
+is_bot2()
 {
-    if( isDefined( self ) );
-    if( isPlayer( self ) );
-
-    return ( sDefined ( self.pers["isBot"] ) && self.pers["isBot"] != 0 );
-}
-
-foreach_bot( arg, arg_two, arg_val )
-{
-    player = level.players;
-    for( i = 0; i < player.size; i++ )
+    if (isdefined(self.pers["isBot"]) && self.pers["isBot"])
     {
-        if( player[i] is_bot_2() && arg_two == 1 )
-            player[i] [[arg]]( arg_val );
-        else if( player[i] is_bot_2() && arg_two == 0 )
-            player[i] [[arg]]();
+        return true;
     }
+    return false;
 }
 
 at_crosshair( ent )
@@ -228,6 +232,7 @@ load_spawn()
 {
     self setOrigin( self.saved_origin );
     self setPlayerAngles( self.saved_angles );
+    self freezeControls ( level.BOT_MOVE );
 }
 
 select_ents( ent, name, player )

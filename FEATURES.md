@@ -7,7 +7,7 @@
 **MISC FUNCTIONS**
 
     - [x]     clone               -- DONE
-    - [x]     givecamo            -- DONE #ANTIGA
+    - [x]     givecamo            -- DONE
     - [x]     drop                -- DONE
     - [x]     about               -- DONE
     - [x]     clearbodies         -- DONE
@@ -19,21 +19,21 @@
 **VISUAL FUNCTIONS**
 
     - [x]     spawn_model         -- DONE
-    - [ ]     spawn_fx            -- NOT SURE AB THIS ONE
+    - [-]     spawn_fx            -- FIX THIS
     - [x]     vision              -- DONE
     - [x]     fog                 -- DONE
     - [x]     change class        -- DONE
 
 **BOT FUNCTIONS**
 
-    - [x]    add                -- DONE #ANTIGA
-    - [x]    move               -- DONE
-    - [x]    aim                -- DONE
-    - [x]    stare              -- DONE
-    - [-]    model              -- DONE ( Opted for a different system using camo argument for now. Pretty jank but it works.)
-    - [x]    kill               -- DONE
-    - [-]    holdgun            -- FIX THIS ( Need to figure out a system that attaches weapon model to bot upon death, while removing the actual weapon. )
-    - [x]    freeze             -- DONE
+    - [x]    add                  -- DONE
+    - [x]    move                 -- DONE
+    - [x]    aim                  -- DONE
+    - [x]    stare                -- DONE
+    - [-]    model                -- DONE ( Opted for a different system using camo argument for now. Pretty jank but it works.)
+    - [x]    kill                 -- DONE
+    - [-]    holdgun              -- FIX THIS ( Need to figure out a system that attaches weapon model to bot upon death, while removing the actual weapon. )
+    - [x]    freeze               -- DONE
 
 <br/><br/>
 **PLANNED FEATURES**
@@ -41,3 +41,5 @@
     - [ ]    Better holdgun system
     - [ ]    Better bot model system
     - [ ]    Allow the score to be edited.
+    - [ ]    Custom model and fx spawns. ( Covers viewhands )
+    - [ ]    Fix prematch skip.

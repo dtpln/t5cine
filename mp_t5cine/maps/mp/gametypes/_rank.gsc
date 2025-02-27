@@ -20,7 +20,7 @@ init()
 	precacheString( &"RANK_ROMANII" );
 	if ( level.teamBased )
 	{
-		registerScoreInfo( "kill", 100 );
+		registerScoreInfo( "kill", 2 );
 		registerScoreInfo( "headshot", 100 );
 		registerScoreInfo( "assist_75", 80 );
 		registerScoreInfo( "assist_50", 60 );
@@ -618,8 +618,7 @@ updateRankScoreHUD( amount )
 	self endon( "disconnect" );
 	self endon( "joined_team" );
 	self endon( "joined_spectators" );
-	if ( amount == 0 )
-		return;
+	
 	self notify( "update_score" );
 	self endon( "update_score" );
 	self.rankUpdateTotal += amount;

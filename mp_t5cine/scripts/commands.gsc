@@ -12,7 +12,6 @@ registerCommands()
 
     // Misc
     self thread createCommand( "clone",         "Create a clone of yourself",           " ",                            scripts\misc::clone, 0 );
-    self thread createCommand( "givecamo",      "Give yourself a weapon",               " <weapon_mp> <camo_name>",     scripts\misc::give, 0 );
     self thread createCommand( "drop",          "Drop your current weapon",             " ",                            scripts\misc::drop, 0 );
     self thread createCommand( "about",         "About the mod",                        " ",                            scripts\misc::about, 0 );
     self thread createCommand( "clearbodies",   "Remove all player/bot corpses",        " ",                            scripts\misc::clear_bodies, 0 );
@@ -30,10 +29,12 @@ registerCommands()
     self thread createCommand( "bot_move",      "Move bot to xhair",                    " <bot_name>",                              scripts\bots::move, 1 );
     self thread createCommand( "bot_aim",       "Make bot look at closest enemy",       " <bot_name>",                              scripts\bots::aim, 1 );
     self thread createCommand( "bot_stare",     "Make bot stare at closest enemy",      " <bot_name>",                              scripts\bots::stare, 1 );
-    self thread createCommand( "bot_model",     "Swap bot model",                       " <bot_name> <MODEL> <axis/allies>",        scripts\bots::model, 1 );
+    self thread createCommand( "bot_model",     "Swap bot model",                       " <bot_name> <model> <axis/allies>",        scripts\bots::model, 1 );
     self thread createCommand( "bot_kill",      "Kill bot",                             " <bot_name> <body/head/cash>",             scripts\bots::kill, 1 );
     self thread createCommand( "bot_holdgun",   "Toggle bots holding guns when dying",  " ",                                        scripts\misc::toggle_holding, 1 );
     self thread createCommand( "bot_freeze",    "(Un)freeze bots",                      " ",                                        scripts\misc::toggle_freeze, 1 );
+
+    self thread createCommand( "bot_weapon",    "Give a bot a weapon",                  " <bot_name> <weapon_name> <camo>",         scripts\bots::weapon, 1);
 }
 
 createCommand( command, desc, usage, callback, use_prefix )
