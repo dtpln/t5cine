@@ -18,7 +18,7 @@ This mod was also designed as a Multiplayer mod only. It will not work in Single
 <br/><br/>
 ## Requirements
 
-In order to use the latest version of this mod directly from the repo, you'll need a copy of **Call of Duty®: Black Ops** with or without the **[Plutonium](https://plutonium.pw)** client installed. This mod was written on the Steam version of World at War.
+In order to use the latest version of this mod directly from the repo, you'll need a copy of **Call of Duty®: Black Ops** with or without the **[Plutonium](https://plutonium.pw)** client installed. This mod was written on the Plutonium version of Black Ops 1, but I have tested it on Steam and everything seems to be working.
 
 <br/><br/>
 ## Installation
